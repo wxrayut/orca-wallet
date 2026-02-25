@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+build/
+coverage/
+dist/
+out/
+.next/
+.turbo/
+.vercel/
+.cache/
+**/dist/
+**/build/
+**/coverage/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Environment variables
+.env
+.env.*
+
+# TypeScript build info
+*.tsbuildinfo
+
+# IDE and OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+
+# Temporary files
+.tmp/
+temp/
