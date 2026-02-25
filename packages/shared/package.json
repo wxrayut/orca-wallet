@@ -1,0 +1,22 @@
+{
+  "name": "@orca-wallet/shared",
+  "version": "0.1.0",
+  "description": "A collection of shared packages for the ORCA Wallet.",
+  "author": {
+    "name": "wxrayut",
+    "url": "https://github.com/wxrayut"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "tsc -b -w",
+    "build": "tsc -b"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  }
+}
