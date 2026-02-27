@@ -36,3 +36,23 @@ export function requireEnvNumber(key: string): number {
 
     return num;
 }
+
+/**
+ * Retrieves an optional environment variable, returning a default value if it is not set.
+ *
+ * @param key The name of the environment variable to retrieve.
+ * @param defaultValue The default value to return if the environment variable is not set.
+ * @returns The value of the environment variable, or the default value if it is not set.
+ */
+export function optionalEnv<T extends Env = string>(
+    key: string,
+    defaultValue?: T,
+): T | undefined {
+    const value = process.env[key];
+
+    if (value === undefined || value.length === 0) {
+        return defaultValue;
+    }
+
+    return value as T;
+}
