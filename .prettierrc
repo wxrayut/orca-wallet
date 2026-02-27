@@ -62,7 +62,7 @@
             }
         },
         {
-            "files": ["packages/**/*.{ts}"],
+            "files": ["packages/**/*.{ts, tsx}"],
             "options": {
                 "importOrder": [
                     "^dotenv/config$",
