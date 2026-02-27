@@ -141,6 +141,21 @@ export type UserResponse = IncludeRelations<
     }
 >;
 
+export interface WalletBalance {
+    symbol: string;
+    balance: string;
+}
+
+export interface NativeBalance extends WalletBalance {
+    kind: string;
+}
+
+export interface TokenBalance extends WalletBalance {
+    kind: string;
+}
+
+export type BalanceResponse = NativeBalance | TokenBalance[];
+
 export enum AuthContextState {
     GUEST = "GUEST",
     AUTHORIZED = "AUTHORIZED",
@@ -208,14 +223,6 @@ export type AuthForm =
     | VerifyOTPForm
     | ResetPasswordForm;
 
-export type SessionUser = {
-    state: AuthContextState;
-    email: string;
-    role: Role;
-    rememberMe?: boolean;
-    purpose: Purpose;
-};
-
 export interface CreateWalletForm {
     label?: string;
     network: NetworkType;
@@ -224,4 +231,13 @@ export interface CreateWalletForm {
 export interface ImportWalletForm {
     label?: string;
     phrase: string;
+    network: NetworkType;
 }
+
+export type SessionUser = {
+    state: AuthContextState;
+    email: string;
+    role: Role;
+    rememberMe?: boolean;
+    purpose: Purpose;
+};
