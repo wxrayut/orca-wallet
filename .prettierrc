@@ -1,0 +1,96 @@
+{
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false,
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports",
+        "prettier-plugin-tailwindcss"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "overrides": [
+        {
+            "files": ["apps/backend/**/*.{ts}"],
+            "options": {
+                "importOrder": [
+                    "^dotenv/config$",
+
+                    "^(react/(.*)$)|^(react$)",
+                    "^(next/(.*)$)|^(next$)",
+
+                    "<BUILTIN_MODULES>",
+                    "<THIRD_PARTY_MODULES>",
+
+                    "^~/lib",
+                    "^~/types",
+                    "^~/",
+
+                    "^@orca-wallet/(.*)$",
+
+                    "^\\.\\./(.*)$",
+                    "^\\./(.*)$"
+                ]
+            }
+        },
+        {
+            "files": ["apps/frontend/**/*.{ts,tsx}"],
+            "options": {
+                "importOrder": [
+                    "^dotenv/config$",
+
+                    "^(react/(.*)$)|^(react$)",
+                    "^(next/(.*)$)|^(next$)|^(next-(.*)$)",
+
+                    "lucide-react",
+
+                    "<BUILTIN_MODULES>",
+                    "<THIRD_PARTY_MODULES>",
+
+                    "^~/site-config",
+
+                    "^~/components",
+                    "^~/contexts",
+                    "^~/hooks",
+                    "^~/utils",
+                    "^~/",
+
+                    "^@orca-wallet/(.*)$",
+
+                    "^\\.\\./(.*)$",
+                    "^\\./(.*)$"
+                ]
+            }
+        },
+        {
+            "files": ["packages/**/*.{ts}"],
+            "options": {
+                "importOrder": [
+                    "^dotenv/config$",
+
+                    "^(react/(.*)$)|^(react$)",
+                    "^(next/(.*)$)|^(next$)",
+
+                    "<BUILTIN_MODULES>",
+                    "<THIRD_PARTY_MODULES>",
+
+                    "^@orca-wallet/(.*)$",
+
+                    "^\\.\\./(.*)$",
+                    "^\\./(.*)$"
+                ]
+            }
+        },
+        {
+            "files": [
+                "apps/**/ui/**/*.tsx",
+                "*.css",
+                "*.json",
+                "*.config.{js,ts}"
+            ],
+            "options": {
+                "semi": true,
+                "tabWidth": 2
+            }
+        }
+    ]
+}
