@@ -10,7 +10,7 @@
     "importOrderSortSpecifiers": true,
     "overrides": [
         {
-            "files": ["apps/backend/**/*.{ts}"],
+            "files": ["apps/backend/**/*.{ts, tsx}"],
             "options": {
                 "importOrder": [
                     "^dotenv/config$",
