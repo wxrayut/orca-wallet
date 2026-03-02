@@ -1,5 +1,3 @@
-import { TokenStandard } from "./types";
-
 /**
  * Current API version string.
  *
@@ -42,7 +40,6 @@ export const NETWORKS = [
         name: "Ethereum",
         chainId: 1,
         blockchain: "ethereum",
-        tokenStandard: TokenStandard.ERC20,
     },
     {
         name: "BNB Smart Chain",
@@ -54,31 +51,26 @@ export const NETWORKS = [
         name: "Polygon",
         chainId: 137,
         blockchain: "polygon",
-        tokenStandard: null,
     },
     {
         name: "Arbitrum One",
         chainId: 42161,
         blockchain: "arbitrum",
-        tokenStandard: null,
     },
     {
         name: "Optimism",
         chainId: 10,
         blockchain: "optimism",
-        tokenStandard: null,
     },
     {
         name: "Base",
         chainId: 8453,
         blockchain: "base",
-        tokenStandard: null,
     },
     {
         name: "Avalanche C-Chain",
         chainId: 43114,
         blockchain: "avalanche",
-        tokenStandard: null,
     },
 ];
 
