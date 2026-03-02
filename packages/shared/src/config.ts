@@ -45,7 +45,6 @@ export const NETWORKS = [
         name: "BNB Smart Chain",
         chainId: 56,
         blockchain: "bsc",
-        tokenStandard: null,
     },
     {
         name: "Polygon",
