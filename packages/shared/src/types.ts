@@ -29,6 +29,7 @@ export enum AssetType {
 
 export enum TokenStandard {
     ERC20 = "ERC20",
+    UNKNOWN = "UNKNOWN",
 }
 
 export enum TransactionType {
@@ -43,50 +44,18 @@ export enum TransactionStatus {
     FAILED = "FAILED",
 }
 
-export type TokenTransfer = {
+export type User = {
     id: string;
-    transactionId: string;
-    txHash: string;
-    tokenAddress: string;
-    symbol: string;
-    decimals: number;
-    standard: TokenStandard;
-    amountRaw: string;
-    formattedAmount: string;
-    fromAddress: string;
-    toAddress: string;
+    email: string;
+    username: string;
+    password: string;
+    avatarUrl?: string | null;
+    role: string;
+    isVerified: boolean;
+    isActive: boolean;
+    lastLogin?: Date | null;
     createdAt: Date;
-};
-
-export type TransactionReceipt = {
-    id: string;
-    transactionId: string;
-    txHash: string;
-    gasUsed?: string | null;
-    effectiveGasPrice?: string | null;
-    feePaid?: string | null;
-    blockHash?: string | null;
-    blockNumber?: number | null;
-    nonce?: number | null;
-    errorReason?: string | null;
-    createdAt: Date;
-};
-
-export type Transaction = {
-    id: string;
-    walletId: string;
-    chainId: number;
-    txHash?: string | null;
-    type: TransactionType;
-    assetType: AssetType;
-    fromAddress: string;
-    toAddress?: string | null;
-    valueRaw?: string | null;
-    valueFormatted?: string | null;
-    status: TransactionStatus;
-    blockNumber?: number | null;
-    timestamp: Date;
-    createdAt: Date;
+    updatedAt: Date;
 };
 
 export type Wallet = {
@@ -103,18 +72,50 @@ export type Wallet = {
     updatedAt: Date;
 };
 
-export type User = {
+export type Transaction = {
     id: string;
-    email: string;
-    username: string;
-    password: string;
-    avatarUrl?: string | null;
-    role: string;
-    isVerified: boolean;
-    isActive: boolean;
-    lastLogin?: Date | null;
+    walletId: string;
+    chainId: number;
+    txHash: string | null;
+    type: TransactionType;
+    assetType: AssetType;
+    fromAddress: string;
+    toAddress: string | null;
+    valueRaw: string | null;
+    valueFormatted?: string | null;
+    status: TransactionStatus;
+    blockNumber: number | null;
+    timestamp: Date;
     createdAt: Date;
-    updatedAt: Date;
+};
+
+export type TransactionReceipt = {
+    id: string;
+    transactionId: string;
+    txHash: string;
+    gasUsed: string | null;
+    effectiveGasPrice: string | null;
+    feePaid: string | null;
+    blockHash: string | null;
+    blockNumber: number | null;
+    nonce: number | null;
+    errorReason: string | null;
+    createdAt: Date;
+};
+
+export type TokenTransfer = {
+    id: string;
+    transactionId: string;
+    txHash: string;
+    tokenAddress: string;
+    symbol: string;
+    decimals: number;
+    standard: TokenStandard;
+    amountRaw: string;
+    amountFormatted: string;
+    fromAddress: string;
+    toAddress: string;
+    createdAt: Date;
 };
 
 export type IncludeRelations<M, R> = M & R;
@@ -124,6 +125,14 @@ export type TransactionResponse = IncludeRelations<
     {
         receipt?: TransactionReceipt | null;
         transfers?: TokenTransfer[];
+    }
+>;
+
+export type HistoryResponse = IncludeRelations<
+    Omit<Transaction, "id" | "walletId" | "createdAt">,
+    {
+        receipt: Omit<TransactionReceipt, "id" | "transactionId" | "createdAt">;
+        transfers: Omit<TokenTransfer, "id" | "transactionId" | "createdAt">[];
     }
 >;
 
@@ -155,6 +164,36 @@ export interface TokenBalance extends WalletBalance {
 }
 
 export type BalanceResponse = NativeBalance | TokenBalance[];
+
+export type AssetTransferCategory =
+    | "external"
+    | "internal"
+    | "erc20"
+    | "erc721"
+    | "erc1155"
+    | string;
+
+export interface AssetTransfer {
+    blockNumber: `0x${string}`;
+    uniqueId: string;
+    hash: `0x${string}`;
+    from: `0x${string}`;
+    to: `0x${string}` | null;
+    value: number;
+    erc721TokenId: string | null;
+    erc1155Metadata: unknown[] | null;
+    tokenId: string | null;
+    asset: string;
+    category: AssetTransferCategory;
+    rawContract: {
+        value: `0x${string}`;
+        address: `0x${string}` | null;
+        decimal: `0x${string}`;
+    };
+    metadata: {
+        blockTimestamp: string;
+    };
+}
 
 export enum AuthContextState {
     GUEST = "GUEST",
@@ -241,3 +280,21 @@ export type SessionUser = {
     rememberMe?: boolean;
     purpose: Purpose;
 };
+
+export interface HealthResponse {
+    status: string;
+    uptime: number;
+    timestamp: string;
+}
+
+export interface StatsResponse {
+    users_count: number;
+    wallets_count: number;
+    transactions_count: number;
+}
+
+export interface GithubStatsResponse {
+    stargazers_count: number;
+    watchers_count: number;
+    forks_count: number;
+}
