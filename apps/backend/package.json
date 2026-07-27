@@ -1,0 +1,72 @@
+{
+  "name": "@orca-wallet/backend",
+  "version": "0.1.0",
+  "description": "A backend application for the Orca Wallet.",
+  "author": {
+    "name": "wxrayut",
+    "url": "https://github.com/wxrayut"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "dev:debug": "node --trace-deprecation -r tsconfig-paths/register -r ts-node/register ./src/server.ts",
+    "build": "tsc -b",
+    "start": "node dist/server.js",
+    "prisma:generate": "npx prisma generate",
+    "prisma:push": "npx prisma db push",
+    "prisma:setup": "npm run prisma:generate && npm run prisma:push"
+  },
+  "homepage": "https://github.com/wxrayut/orca-wallet#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxrayut/orca-wallet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wxrayut/orca-wallet/issues"
+  },
+  "keywords": [
+    "orca",
+    "wallet",
+    "blockchain",
+    "cryptocurrency",
+    "bitcoin",
+    "ethereum"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^12.1.0",
+    "@orca-wallet/shared": "*",
+    "@prisma/client": "6.19.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/swagger-ui-express": "^4.1.8",
+    "bcrypt": "^6.0.0",
+    "chalk": "^5.6.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "ethers": "^6.16.0",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.9.2",
+    "jsonwebtoken": "^9.0.3",
+    "nodemon": "^3.1.14",
+    "p-limit": "^7.3.0",
+    "p-queue": "^9.1.0",
+    "resend": "^6.8.0",
+    "swagger-ui-express": "^5.0.1",
+    "yaml": "^2.8.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/ms": "^2.1.0",
+    "@types/node": "^25.5.2",
+    "prisma": "6.19.0",
+    "tsup": "^8.5.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
