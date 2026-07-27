@@ -211,6 +211,11 @@ Install dependencies:
     npm install
 
 
+Build shared package:
+
+    npm run build --workspace=@orca-wallet/shared
+
+
 Prisma Database Setup:
 
     # Navigate to the backend directory
