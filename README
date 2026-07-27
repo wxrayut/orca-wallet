@@ -239,13 +239,15 @@ E. PROJECT STRUCTURE
 The project is organized into several components:
 
     apps/
-        frontend application
+        frontend/
+            frontend application built with Next.js, Tailwind CSS and shadcn/ui
 
-    backend/
-        API server and business logic
+        backend/
+            backend API built with Node.js and Express.js
 
     packages/
-        shared libraries and utilities
+        shared/
+            shared libraries and utilities
 
 
 F. SECURITY NOTICE
