@@ -39,6 +39,20 @@ async function handleSender(
     existing: Transaction | null,
     transaction: HistoryResponse,
 ) {
+    /**
+     * NOTE:
+     * This ignores outgoing transactions if they are missing from DB.
+     *
+     * Example:
+     *   Orca Wallet -> External Address
+     *
+     * If the transaction was not inserted before sending,
+     * it will be skipped here.
+     *
+     * TODO:
+     * Sender and receiver sides should use the same upsert flow.
+     * Missing transactions should be created from blockchain data.
+     */
     if (!existing) return;
 
     Logger.info(
@@ -124,6 +138,21 @@ async function handleWalletSide(
     const hash = t.hash.toLowerCase();
     const newTransaction = history.get(hash);
 
+    /**
+     * NOTE:
+     * wallet.history() is currently required before processing.
+     *
+     * This means we depend on history detection logic to know whether
+     * a transaction belongs to this wallet.
+     *
+     * For external transfers, this may fail depending on the history
+     * implementation.
+     *
+     * TODO:
+     * Replace this with direct chain scanning:
+     * - Check tx.from / tx.to for native transfers
+     * - Check receipt logs for ERC20 Transfer events
+     */
     if (!newTransaction) {
         Logger.warning(
             `Transaction ${hash} not found in history for wallet ${wallet.address}`,
@@ -241,6 +270,37 @@ async function handler(blockNumber: number) {
             ...txHashes,
         ]);
 
+        /**
+         * NOTE:
+         * This early return causes a bug for external incoming transactions.
+         *
+         * Current behavior:
+         * - We only process transactions that already exist in the database
+         *   (e.g. transactions created by Orca Wallet before broadcasting).
+         *
+         * Example:
+         *   Alice -> Orca Wallet Address
+         *
+         * The transaction exists on-chain:
+         *   txHash: 0xabc...
+         *   from: Alice
+         *   to: Orca Wallet
+         *
+         * But it does not exist in our database because Orca Wallet did not create it.
+         *
+         * Result:
+         *   pendingTxs.length === 0
+         *   -> return
+         *   -> transaction history will never be created
+         *
+         * TODO:
+         * Blockchain should be treated as the source of truth.
+         * We should scan block transactions directly, detect wallet addresses,
+         * and create/update database records from on-chain data.
+         *
+         * Pending transactions should only be used for tracking outgoing
+         * transactions created by Orca Wallet, not for discovering history.
+         */
         if (pendingTxs.length === 0) {
             Logger.info(`No pending transactions found in block ${blockNumber}`);
             return;
