@@ -1,0 +1,290 @@
+Orca Wallet
+===========
+
+A simple Ethereum wallet implementation written for learning and experimentation.
+
+Orca Wallet allows users to create new wallets, import existing wallets,
+manage accounts, and interact with the Ethereum blockchain. It supports
+sending and receiving ETH and ERC-20 tokens through Ethereum-compatible
+networks.
+
+This project is primarily intended for educational purposes and as a
+personal software project. It demonstrates concepts involved in blockchain
+wallet development, cryptographic key management, transaction handling,
+and Ethereum RPC communication.
+
+
+A. PROJECT HISTORY
+==================
+
+Orca Wallet was created as a personal project to explore Ethereum wallet
+architecture and blockchain application development.
+
+The project was developed to understand how cryptocurrency wallets work,
+including:
+
+    - Private key generation and wallet management
+    - Ethereum account handling
+    - Transaction creation and signing
+    - ERC-20 token interaction
+    - Blockchain RPC communication
+    - Backend API design and database management
+
+Orca Wallet is not intended to compete with production cryptocurrency
+wallet applications. It is a learning-oriented implementation designed
+to explore the technologies and engineering practices behind blockchain
+software.
+
+
+B. FEATURES
+===========
+
+Wallet Management
+-----------------
+
+    - Create new Ethereum wallets
+    - Import existing wallets
+    - Manage multiple wallet accounts
+    - View wallet addresses
+
+
+Ethereum Support
+----------------
+
+    - Connect to Ethereum-compatible networks
+    - Check ETH balances
+    - Send ETH transactions
+    - Track transaction status
+
+
+ERC-20 Token Support
+--------------------
+
+    - View ERC-20 token balances
+    - Send ERC-20 token transactions
+    - Interact with token smart contracts
+
+
+Authentication & Backend
+------------------------
+
+    - User account management
+    - OTP email verification
+    - Secure API communication
+    - Transaction history storage
+
+
+C. TECHNOLOGIES USED
+====================
+
+Programming Languages
+---------------------
+
+    - TypeScript
+
+
+Frontend
+--------
+
+    - Next.js (https://nextjs.org/)
+    - Tailwind CSS (https://tailwindcss.com/)
+    - shadcn/ui (https://ui.shadcn.com/)
+
+
+Backend
+-------
+
+    - Node.js (https://nodejs.org/)
+    - Express.js (https://expressjs.com/)
+    - JSON Web Tokens (https://www.npmjs.com/package/jsonwebtoken)
+    - Bcrypt (https://www.npmjs.com/package/bcrypt)
+    - Redis (https://redis.io/)
+    - Resend (https://resend.com/)
+
+
+Database
+--------
+
+    - MongoDB Atlas (https://www.mongodb.com/cloud/atlas)
+
+
+Database Toolkit
+-------------------------
+
+    - Prisma v6.19.0 (https://www.prisma.io/)
+
+
+Blockchain
+----------
+
+    - ethers.js (Ethereum JavaScript library) (https://docs.ethers.org/v6/)
+    - Alchemy (https://www.alchemy.com/)
+
+
+D. GETTING STARTED
+==================
+
+Prerequisites
+-------------
+
+Before running Orca Wallet, make sure you have installed:
+
+    - Node.js (https://nodejs.org/)
+
+
+Installation
+------------
+
+Clone the repository:
+
+    git clone https://github.com/wxrayut/orca-wallet
+
+Navigate to the project directory:
+
+    cd orca-wallet
+
+
+Environment Configuration
+-------------------------
+
+Create an environment file:
+
+    Rename `.env.example` to `.env` in the backend directory.
+
+Configure the required environment variables:
+
+    ORCA_ENCRYPTION_KEY=<YOUR_32_CHARACTER_ENCRYPTION_KEY>
+
+    JWT_ACCESS_SECRET=<YOUR_64_CHARACTER_HEX_STRING>
+
+    RPC_API_KEY=<YOUR_ALCHEMY_API_KEY>
+
+    RESEND_API_KEY=<YOUR_RESEND_API_KEY>
+
+    RESEND_SENDER_EMAIL=<YOUR_RESEND_SENDER_EMAIL>
+
+    ADMIN_USERNAME="<YOUR_ADMIN_USERNAME>"
+
+    ADMIN_EMAIL="<YOUR_ADMIN_EMAIL>"
+
+    ADMIN_PASSWORD="<YOUR_ADMIN_PASSWORD>"
+
+
+MongoDB Atlas Setup
+-------------------
+
+Orca Wallet uses MongoDB Atlas for storing application data.
+
+Make sure a MongoDB Atlas cluster is available before starting the application.
+
+Configure the database connection in your environment file:
+
+    DATABASE_URL=mongodb+srv://<USERNAME>:<PASSWORD>@cluster0.cgdqoii.mongodb.net/<DATABASE_NAME>?retryWrites=true&w=majority&appName=Cluster0
+
+
+Redis Setup (WSL)
+-----------------
+
+For development environments, Redis can be run inside
+Windows Subsystem for Linux (WSL).
+
+    sudo service redis-server start
+
+Verify Redis is running:
+
+    redis-cli ping
+
+Expected output:
+
+    PONG
+
+The application can connect to Redis using:
+
+    REDIS_URL=redis://localhost:6379
+
+
+Running the Application
+-----------------------
+
+Install dependencies:
+
+    npm install
+
+
+Prisma Database Setup:
+
+    # Navigate to the backend directory
+    cd apps/backend
+
+    # Run Prisma setup to create the database schema and apply migrations
+    npm run prisma:setup
+
+    # Return to the root directory
+    cd ../..
+
+
+Start the application:
+
+    npx turbo dev
+
+
+E. PROJECT STRUCTURE
+====================
+
+The project is organized into several components:
+
+    apps/
+        frontend application
+
+    backend/
+        API server and business logic
+
+    packages/
+        shared libraries and utilities
+
+
+F. SECURITY NOTICE
+==================
+
+Orca Wallet is a personal learning project created for educational and experimental purposes.
+
+This project has not undergone a professional security audit and should not be considered 
+production-ready. The implementation may contain security vulnerabilities, design limitations, 
+or other issues that could result in loss of funds or sensitive information.
+
+Do not use Orca Wallet to store real cryptocurrency assets or private keys with real value.
+
+If you plan to use this project in a production environment, you should perform your own security 
+review and consider implementing additional security measures, such as:
+
+    - Professional security audits
+    - Proper key management solutions
+    - Hardware security modules (HSM) or secure key storage
+    - Strong encryption practices
+    - Rate limiting and abuse prevention
+    - Input validation and sanitization
+    - Secure authentication mechanisms
+    - Comprehensive logging and monitoring
+    - Regular dependency and vulnerability checks
+    - Penetration testing
+
+The security level of this project can be improved depending on your requirements and intended use case.
+
+
+H. LICENSE
+==========
+
+This project is licensed under the MIT License.
+
+See the <LICENSE> file for the complete license text.
+
+
+I. DISCLAIMER
+=============
+
+Orca Wallet is provided "AS IS", without warranty of any kind.
+
+The authors are not responsible for any loss of funds, private keys,
+or damages resulting from the use of this software.
+
+Use this project at your own risk.
