@@ -1,0 +1,40 @@
+{
+  "name": "orca-wallet",
+  "version": "0.1.0",
+  "description": "A simple custodial Ethereum wallet system for ERC-20 token management.",
+  "author": {
+    "name": "wxrayut",
+    "url": "https://github.com/wxrayut"
+  },
+  "packageManager": "npm@20.22.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build"
+  },
+  "homepage": "https://github.com/wxrayut/orca-wallet#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxrayut/orca-wallet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wxrayut/orca-wallet/issues"
+  },
+  "keywords": [
+    "orca",
+    "wallet",
+    "blockchain",
+    "cryptocurrency",
+    "bitcoin",
+    "ethereum"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "turbo": "^2.8.0"
+  }
+}
